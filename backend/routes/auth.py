@@ -26,6 +26,11 @@ def login():
         return jsonify({'msg': 'Bad credentials'}), 401
 
     token = create_access_token(identity=user.id)
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+    return jsonify(access_token=token, role=user.role), 200
+
+
+
 codex/разработка-crm-системы-для-компьютерного-клуба
     return jsonify(access_token=token, role=user.role), 200
 
@@ -35,6 +40,7 @@ codex/разработка-crm-системы-для-компьютерного-
 
 
 codex-ui-clean
+main
 main
 @auth_bp.route('/auth/register', methods=['POST'])
 def register():
@@ -58,9 +64,14 @@ def register():
         phone=phone,
         role_id=role_id,
     )
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+    if user.role_rel:
+        user.role = user.role_rel.name
+
 codex/разработка-crm-системы-для-компьютерного-клуба
     if user.role_rel:
         user.role = user.role_rel.name
+ main
  main
     user.set_password(password)
     db.session.add(user)
@@ -69,12 +80,24 @@ codex/разработка-crm-системы-для-компьютерного-
     return jsonify({'msg': 'User created', 'id': user.id}), 201
 
 
+ bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
  codex/разработка-crm-системы-для-компьютерного-клуба
 
  main
  main
+main
 @auth_bp.route('/protected')
 @jwt_required()
 def protected():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
+
+@auth_bp.route('/auth/logout', methods=['POST'])
+@jwt_required()
+def logout():
+    """Acknowledge client-side token removal."""
+    return jsonify({'msg': 'Logged out'}), 200
+ main

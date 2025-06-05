@@ -4,12 +4,17 @@
 
 ### roles
 - `id` — PK
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+- `name` — название роли (`admin`, `operator`, `tech`, `read-only`)
+
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 - `name` — название роли (`admin`, `operator`, `tech`, `read-only`)
 
 - `name` — название роли (`admin`, `operator`, `read-only`)
 main
 
+main
 ### users
 - `id` — PK
 - `username` — логин
@@ -17,9 +22,13 @@ main
 - `full_name` — имя оператора
 - `phone`
 - `role_id` — FK -> roles.id
+ bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+- `role` — строка роли (admin/operator/tech)
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 - `role` — строка роли (admin/operator/tech)
-=======
+
+main
 main
 - `created_at`
 
@@ -100,6 +109,9 @@ main
 ## Основные маршруты API (Flask)
 
 - `POST /api/auth/login` — логин и получение JWT
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+- `POST /api/auth/register` — создание пользователя
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 - `POST /api/auth/register` — создание пользователя
 
@@ -108,13 +120,18 @@ codex/разработка-crm-системы-для-компьютерного-
 
  main
 main
+main
 - `POST /api/auth/logout` — отзыв токена
 - `GET /api/users` — список пользователей (admin)
 - `POST /api/users` — создание пользователя
 - `GET /api/clients` — список клиентов
 - `POST /api/clients` — создание клиента
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+- `POST /api/clients/import_excel` — загрузка списка клиентов из Excel
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 - `POST /api/clients/import_excel` — загрузка списка клиентов из Excel
+main
 main
 - `GET /api/zones` — список зон
 - `POST /api/zones`
@@ -122,12 +139,16 @@ main
 - `POST /api/computers`
 - `GET /api/bookings` — бронирования
 - `POST /api/bookings`
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+- `POST /api/bookings/<id>/cancel` — отменить бронь
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 - `POST /api/bookings/<id>/cancel` — отменить бронь
 
  codex-ui-clean
 - `POST /api/bookings/<id>/cancel` — отменить бронь
  main
+main
 main
 - `GET /api/sessions` — активные/завершённые сессии
 - `POST /api/sessions/start` — запуск сессии
@@ -137,7 +158,10 @@ main
 - `GET /api/promotions`
 - `POST /api/promotions`
 - `GET /api/shifts` — история смен
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
 codex/разработка-crm-системы-для-компьютерного-клуба
+ main
 - `POST /api/shifts/close` — закрытие смены (kaspi, нал, мелочь, долги, комментарий)
 - `GET /api/shifts/export_excel` — выгрузить отчёт по сменам в Excel
 - `GET /api/reports/daily` — отчёт за день
@@ -147,6 +171,8 @@ codex/разработка-crm-системы-для-компьютерного-
 - `GET /api/reports/clients-active` — активные клиенты по дням
 - `GET /api/reports/shift-performance` — производительность смен
 
+ bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
  codex-ui-clean
 - `POST /api/shifts/close` — закрытие смены (kaspi, нал, мелочь, долги, комментарий)
 
@@ -154,6 +180,7 @@ codex/разработка-crm-системы-для-компьютерного-
  main
 main
 
+ main
 Все запросы, кроме логина, требуют заголовок `Authorization: Bearer <jwt>`.
 
 ## Структура каталогов проекта
@@ -183,9 +210,13 @@ newcrm/
 - `psycopg2` или `sqlite3`
 - `requests` (для интеграции с внешними сервисами)
 - `python-telegram-bot` (Telegram-уведомления)
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+- `openpyxl` (импорт/экспорт Excel)
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 - `openpyxl` (импорт/экспорт Excel)
  main
+main
 
 ### Frontend
 - `React`, `Next.js`
@@ -193,4 +224,13 @@ codex/разработка-crm-системы-для-компьютерного-
 - `axios` для запросов к API
 - `jwt-decode` для работы с токенами
 
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+## Переменные окружения
+
+- `JWT_SECRET_KEY` — секрет для подписи JWT
+- `SQLALCHEMY_DATABASE_URI` — строка подключения к SQLite или PostgreSQL
+- `CORS_ORIGINS` — список доменов фронтенда
+
+
+ main
 Эта структура задаёт основу для полноценной CRM-системы компьютерного клуба с ролями `admin`, `operator` и `read-only`, REST API, Telegram-уведомлениями и возможностью подключения внешних приложений.

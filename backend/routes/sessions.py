@@ -1,8 +1,12 @@
 from datetime import datetime
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+from .utils import role_required
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 from .utils import role_required
+main
 main
 
 from models import db
@@ -15,9 +19,13 @@ sessions_bp = Blueprint('sessions', __name__, url_prefix='/api/sessions')
 
 @sessions_bp.route('/start', methods=['POST'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['operator', 'admin'])
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
  main
+main
 def start_session():
     data = request.get_json() or {}
     client_id = data.get('client_id')
@@ -41,9 +49,13 @@ def start_session():
 
 @sessions_bp.route('/stop', methods=['POST'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['operator', 'admin'])
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
  main
+main
 def stop_session():
     data = request.get_json() or {}
     session_id = data.get('id')
@@ -62,9 +74,13 @@ def stop_session():
 
 @sessions_bp.route('/', methods=['GET'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['operator', 'admin'])
+
 codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
  main
+main
 def list_sessions():
     client_id = request.args.get('client_id')
     date = request.args.get('date')  # YYYY-MM-DD

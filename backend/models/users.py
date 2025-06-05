@@ -11,15 +11,20 @@ class User(db.Model):
     full_name = db.Column(db.String(120))
     phone = db.Column(db.String(20))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
 codex/разработка-crm-системы-для-компьютерного-клуба
+main
     role = db.Column(db.String(20), nullable=False, default='operator')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     role_rel = db.relationship('Role', back_populates='users')
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     role = db.relationship('Role', back_populates='users')
+main
 main
     shifts = db.relationship('Shift', back_populates='operator')
     actions = db.relationship('Action', back_populates='user')
