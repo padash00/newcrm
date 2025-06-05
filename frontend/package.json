@@ -12,8 +12,17 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "axios": "1.6.2",
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
     "shadcn-ui": "0.1.0",
     "recharts": "2.6.2"
+
+codex/разработка-crm-системы-для-компьютерного-клуба
+    "shadcn-ui": "0.1.0",
+    "recharts": "2.6.2"
+
+    "shadcn-ui": "0.1.0"
+main
+main
   },
   "devDependencies": {
     "tailwindcss": "3.3.2",

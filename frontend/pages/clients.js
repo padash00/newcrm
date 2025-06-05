@@ -1,14 +1,34 @@
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 import { useEffect, useState, useRef } from 'react'
+
+codex/разработка-crm-системы-для-компьютерного-клуба
+import { useEffect, useState, useRef } from 'react'
+
+import { useEffect, useState } from 'react'
+main
+main
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { Card } from '../components/ui/card'
 import { Table, TableHeader, TableHead, TableBody, TableRow, TableCell } from '../components/ui/table'
 import { Badge } from '../components/ui/badge'
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
+codex/разработка-crm-системы-для-компьютерного-клуба
+main
 import { Button } from '../components/ui/button'
 
 export default function Clients() {
   const [clients, setClients] = useState([])
   const fileInput = useRef()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
+
+
+export default function Clients() {
+  const [clients, setClients] = useState([])
+ main
+main
   const router = useRouter()
 
   useEffect(() => {
@@ -19,6 +39,10 @@ export default function Clients() {
       .catch(() => router.replace('/login'))
   }, [router])
 
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
+codex/разработка-crm-системы-для-компьютерного-клуба
+main
   const handleImport = async (e) => {
     const file = e.target.files[0]
     if (!file) return
@@ -44,6 +68,14 @@ export default function Clients() {
         <Button onClick={() => fileInput.current.click()}>Импорт из Excel</Button>
         <input type="file" accept=".xlsx" ref={fileInput} className="hidden" onChange={handleImport} />
       </div>
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
+
+  return (
+    <div className="p-4 space-y-4">
+      <h1 className="text-xl font-bold">Клиенты</h1>
+main
+main
       <Card>
         <Table>
           <TableHeader>

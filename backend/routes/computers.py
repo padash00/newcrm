@@ -1,6 +1,12 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 from .utils import role_required
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+from .utils import role_required
+ main
+main
 
 from models import db
 from models.computers import Computer
@@ -10,14 +16,26 @@ computers_bp = Blueprint('computers', __name__, url_prefix='/api/computers')
 
 @computers_bp.route('/', methods=['GET'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['admin', 'tech'])
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['admin', 'tech'])
+ main
+main
 def list_computers():
     comps = Computer.query.all()
     return jsonify([{ 'id': c.id, 'name': c.name, 'zone_id': c.zone_id, 'status': c.status } for c in comps])
 
 @computers_bp.route('/', methods=['POST'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['admin', 'tech'])
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['admin', 'tech'])
+ main
+main
 def create_computer():
     data = request.get_json() or {}
     name = data.get('name')
@@ -36,7 +54,13 @@ def create_computer():
 
 @computers_bp.route('/<int:comp_id>', methods=['PATCH'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['admin', 'tech'])
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['admin', 'tech'])
+ main
+main
 def update_computer(comp_id):
     comp = Computer.query.get_or_404(comp_id)
     data = request.get_json() or {}

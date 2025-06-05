@@ -1,8 +1,16 @@
 from datetime import datetime
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 from .utils import role_required
 
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+from .utils import role_required
+
+ main
+
+main
 from models import db
 from models.bookings import Booking
 
@@ -10,7 +18,14 @@ bookings_bp = Blueprint('bookings', __name__, url_prefix='/api/bookings')
 
 @bookings_bp.route('/', methods=['POST'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['operator', 'admin'])
+
+ main
+main
 def create_booking():
     data = request.get_json() or {}
     try:
@@ -31,7 +46,14 @@ def create_booking():
 
 @bookings_bp.route('/', methods=['GET'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['operator', 'admin'])
+
+ main
+main
 def list_bookings():
     date = request.args.get('date')
     status = request.args.get('status')
@@ -60,7 +82,13 @@ def list_bookings():
 
 @bookings_bp.route('/<int:booking_id>/cancel', methods=['POST'])
 @jwt_required()
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['operator', 'admin'])
+ main
+main
 def cancel_booking(booking_id):
     booking = Booking.query.get_or_404(booking_id)
     booking.status = 'cancelled'

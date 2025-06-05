@@ -2,7 +2,13 @@ flask
 flask_sqlalchemy
 flask_jwt_extended
 werkzeug
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 openpyxl
 flask_cors
 gunicorn
 psycopg2-binary
+
+codex/разработка-crm-системы-для-компьютерного-клуба
+openpyxl
+main
+main

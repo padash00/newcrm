@@ -1,7 +1,14 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
 import openpyxl
 from io import BytesIO
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+import openpyxl
+from io import BytesIO
+ main
+main
 
 from models import db
 from models.clients import Client
@@ -69,6 +76,10 @@ def delete_client(client_id):
     db.session.delete(client)
     db.session.commit()
     return jsonify({'msg': 'deleted'})
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
+ codex/разработка-crm-системы-для-компьютерного-клуба
+main
 
 
 @clients_bp.route('/import_excel', methods=['POST'])
@@ -100,3 +111,7 @@ def import_clients_excel():
         added += 1
     db.session.commit()
     return jsonify({'added': added, 'errors': errors})
+bh21zy-codex/разработка-crm-системы-для-компьютерного-клуба
+
+ main
+ main
