@@ -1,0 +1,8 @@
+flask
+flask_sqlalchemy
+flask_jwt_extended
+werkzeug
+openpyxl
+flask_cors
+gunicorn
+psycopg2-binary
