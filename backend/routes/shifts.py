@@ -1,9 +1,15 @@
+codex/разработка-crm-системы-для-компьютерного-клуба
 from datetime import datetime, timedelta
 from flask import Blueprint, request, jsonify, send_file
 import openpyxl
 from io import BytesIO
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from .utils import role_required
+
+from datetime import datetime
+from flask import Blueprint, request, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
+main
 
 from models import db
 from models.shifts import Shift
@@ -12,7 +18,9 @@ shifts_bp = Blueprint('shifts', __name__, url_prefix='/api/shifts')
 
 @shifts_bp.route('/', methods=['GET'])
 @jwt_required()
+codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
+main
 def list_shifts():
     shifts = Shift.query.all()
     return jsonify([{ 
@@ -31,7 +39,9 @@ def list_shifts():
 
 @shifts_bp.route('/', methods=['POST'])
 @jwt_required()
+codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
+main
 def open_shift():
     operator_id = get_jwt_identity()
     shift = Shift(operator_id=operator_id, start_time=datetime.utcnow())
@@ -41,7 +51,9 @@ def open_shift():
 
 @shifts_bp.route('/close', methods=['POST'])
 @jwt_required()
+codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
+main
 def close_shift():
     operator_id = get_jwt_identity()
     data = request.get_json() or {}
@@ -65,7 +77,9 @@ def close_shift():
 
 @shifts_bp.route('/<int:shift_id>', methods=['GET'])
 @jwt_required()
+codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['operator', 'admin'])
+main
 def get_shift(shift_id):
     shift = Shift.query.get_or_404(shift_id)
     return jsonify({
@@ -81,6 +95,7 @@ def get_shift(shift_id):
         'total_amount': shift.total_amount,
         'delta_amount': shift.delta_amount,
     })
+codex/разработка-crm-системы-для-компьютерного-клуба
 
 
 @shifts_bp.route('/export_excel', methods=['GET'])
@@ -118,3 +133,4 @@ def export_shifts_excel():
         download_name='shifts.xlsx',
         mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     )
+main

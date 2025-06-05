@@ -1,14 +1,24 @@
+codex/разработка-crm-системы-для-компьютерного-клуба
 import { useEffect, useState, useRef } from 'react'
+
+import { useEffect, useState } from 'react'
+main
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { Card } from '../components/ui/card'
 import { Table, TableHeader, TableHead, TableBody, TableRow, TableCell } from '../components/ui/table'
 import { Badge } from '../components/ui/badge'
+codex/разработка-crm-системы-для-компьютерного-клуба
 import { Button } from '../components/ui/button'
 
 export default function Clients() {
   const [clients, setClients] = useState([])
   const fileInput = useRef()
+
+
+export default function Clients() {
+  const [clients, setClients] = useState([])
+ main
   const router = useRouter()
 
   useEffect(() => {
@@ -19,6 +29,7 @@ export default function Clients() {
       .catch(() => router.replace('/login'))
   }, [router])
 
+codex/разработка-crm-системы-для-компьютерного-клуба
   const handleImport = async (e) => {
     const file = e.target.files[0]
     if (!file) return
@@ -44,6 +55,11 @@ export default function Clients() {
         <Button onClick={() => fileInput.current.click()}>Импорт из Excel</Button>
         <input type="file" accept=".xlsx" ref={fileInput} className="hidden" onChange={handleImport} />
       </div>
+
+  return (
+    <div className="p-4 space-y-4">
+      <h1 className="text-xl font-bold">Клиенты</h1>
+main
       <Card>
         <Table>
           <TableHeader>

@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
+codex/разработка-crm-системы-для-компьютерного-клуба
 from .utils import role_required
+main
 
 from models import db
 from models.tariffs import Tariff
@@ -10,14 +12,18 @@ tariffs_bp = Blueprint('tariffs', __name__, url_prefix='/api/tariffs')
 
 @tariffs_bp.route('/', methods=['GET'])
 @jwt_required()
+codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['admin'])
+main
 def list_tariffs():
     tariffs = Tariff.query.all()
     return jsonify([{ 'id': t.id, 'name': t.name, 'price_per_hour': t.price_per_hour, 'description': t.description } for t in tariffs])
 
 @tariffs_bp.route('/', methods=['POST'])
 @jwt_required()
+codex/разработка-crm-системы-для-компьютерного-клуба
 @role_required(['admin'])
+main
 def create_tariff():
     data = request.get_json() or {}
     if not all([data.get('name'), data.get('price_per_hour')]):

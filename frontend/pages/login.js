@@ -1,19 +1,31 @@
+codex/разработка-crm-системы-для-компьютерного-клуба
 import { useState, useContext } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { AuthContext } from '../context/AuthContext'
 
+import { useState } from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+main
+
 export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
+codex/разработка-crm-системы-для-компьютерного-клуба
   const { login } = useContext(AuthContext)
+main
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const res = await axios.post('/api/auth/login', { username, password })
+codex/разработка-crm-системы-для-компьютерного-клуба
       login(res.data.access_token, res.data.role)
+
+      localStorage.setItem('token', res.data.access_token)
+ main
       router.push('/dashboard')
     } catch (err) {
       alert('Login failed')

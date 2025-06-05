@@ -4,7 +4,11 @@
 
 ### roles
 - `id` — PK
+codex/разработка-crm-системы-для-компьютерного-клуба
 - `name` — название роли (`admin`, `operator`, `tech`, `read-only`)
+
+- `name` — название роли (`admin`, `operator`, `read-only`)
+main
 
 ### users
 - `id` — PK
@@ -13,7 +17,10 @@
 - `full_name` — имя оператора
 - `phone`
 - `role_id` — FK -> roles.id
+codex/разработка-crm-системы-для-компьютерного-клуба
 - `role` — строка роли (admin/operator/tech)
+=======
+main
 - `created_at`
 
 ### clients
@@ -93,20 +100,35 @@
 ## Основные маршруты API (Flask)
 
 - `POST /api/auth/login` — логин и получение JWT
+codex/разработка-crm-системы-для-компьютерного-клуба
 - `POST /api/auth/register` — создание пользователя
+
+ codex-ui-clean
+- `POST /api/auth/register` — создание пользователя
+
+ main
+main
 - `POST /api/auth/logout` — отзыв токена
 - `GET /api/users` — список пользователей (admin)
 - `POST /api/users` — создание пользователя
 - `GET /api/clients` — список клиентов
 - `POST /api/clients` — создание клиента
+codex/разработка-crm-системы-для-компьютерного-клуба
 - `POST /api/clients/import_excel` — загрузка списка клиентов из Excel
+main
 - `GET /api/zones` — список зон
 - `POST /api/zones`
 - `GET /api/computers` — список ПК
 - `POST /api/computers`
 - `GET /api/bookings` — бронирования
 - `POST /api/bookings`
+codex/разработка-crm-системы-для-компьютерного-клуба
 - `POST /api/bookings/<id>/cancel` — отменить бронь
+
+ codex-ui-clean
+- `POST /api/bookings/<id>/cancel` — отменить бронь
+ main
+main
 - `GET /api/sessions` — активные/завершённые сессии
 - `POST /api/sessions/start` — запуск сессии
 - `POST /api/sessions/stop` — завершение
@@ -115,6 +137,7 @@
 - `GET /api/promotions`
 - `POST /api/promotions`
 - `GET /api/shifts` — история смен
+codex/разработка-crm-системы-для-компьютерного-клуба
 - `POST /api/shifts/close` — закрытие смены (kaspi, нал, мелочь, долги, комментарий)
 - `GET /api/shifts/export_excel` — выгрузить отчёт по сменам в Excel
 - `GET /api/reports/daily` — отчёт за день
@@ -123,6 +146,13 @@
 - `GET /api/reports/income-by-day` — доход по дням
 - `GET /api/reports/clients-active` — активные клиенты по дням
 - `GET /api/reports/shift-performance` — производительность смен
+
+ codex-ui-clean
+- `POST /api/shifts/close` — закрытие смены (kaspi, нал, мелочь, долги, комментарий)
+
+- `POST /api/shifts/close` — закрытие смены
+ main
+main
 
 Все запросы, кроме логина, требуют заголовок `Authorization: Bearer <jwt>`.
 
@@ -153,7 +183,9 @@ newcrm/
 - `psycopg2` или `sqlite3`
 - `requests` (для интеграции с внешними сервисами)
 - `python-telegram-bot` (Telegram-уведомления)
+codex/разработка-crm-системы-для-компьютерного-клуба
 - `openpyxl` (импорт/экспорт Excel)
+ main
 
 ### Frontend
 - `React`, `Next.js`
