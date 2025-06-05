@@ -12,6 +12,11 @@ class Shift(db.Model):
     cash_amount = db.Column(db.Float, default=0.0)
     coins_amount = db.Column(db.Float, default=0.0)
     debt_amount = db.Column(db.Float, default=0.0)
+    codex-ui-clean
+    comment = db.Column(db.Text)
+    total_amount = db.Column(db.Float, default=0.0)
+    delta_amount = db.Column(db.Float, default=0.0)
+    main
 
     operator = db.relationship('User', back_populates='shifts')
     payments = db.relationship('Payment', back_populates='shift')

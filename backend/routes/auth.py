@@ -29,6 +29,37 @@ def login():
     return jsonify(access_token=token), 200
 
 
+codex-ui-clean
+@auth_bp.route('/auth/register', methods=['POST'])
+def register():
+    """Create a new user account."""
+    data = request.get_json() or {}
+    username = data.get('username')
+    password = data.get('password')
+    full_name = data.get('full_name')
+    phone = data.get('phone')
+    role_id = data.get('role_id')
+
+    if not all([username, password, full_name, phone, role_id]):
+        return jsonify({'msg': 'Missing required fields'}), 400
+
+    if User.query.filter_by(username=username).first():
+        return jsonify({'msg': 'Username already exists'}), 409
+
+    user = User(
+        username=username,
+        full_name=full_name,
+        phone=phone,
+        role_id=role_id,
+    )
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify({'msg': 'User created', 'id': user.id}), 201
+
+
+ main
 @auth_bp.route('/protected')
 @jwt_required()
 def protected():
