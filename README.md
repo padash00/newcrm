@@ -10,6 +10,28 @@
 зависимостей находится в [docs/design.md](docs/design.md).
 
 Бэкенд использует JWT авторизацию. Для входа отправьте POST запрос на
+
+## Переменные окружения
+
+Скопируйте файл `.env.example` в `.env` и укажите значения:
+
+- `JWT_SECRET_KEY` — ключ подписи JWT
+- `SQLALCHEMY_DATABASE_URI` — строка подключения к базе данных
+- `CORS_ORIGINS` — список доменов фронтенда через запятую
+
+## Запуск через Docker
+
+В репозитории есть `docker-compose.yml`, который поднимает backend с
+Gunicorn и фронтенд под Nginx. Для запуска выполните:
+
+```bash
+docker-compose up --build
+```
+
+По умолчанию приложения будут доступны на
+`http://localhost:8000` (API) и `http://localhost:3000` (фронтенд).
+Для продакшн‑сборки укажите PostgreSQL в `SQLALCHEMY_DATABASE_URI` и
+разместите сервис на нужном домене.
 codex/разработка-crm-системы-для-компьютерного-клуба
 `/api/auth/login` с `username` и `password`. Создать пользователя можно
 через `POST /api/auth/register`. Используйте полученный токен в заголовке

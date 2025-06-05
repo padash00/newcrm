@@ -1,6 +1,11 @@
 
-codex/разработка-crm-системы-для-компьютерного-клуба
-from flask import Flask
+from flask_cors import CORS
+import os
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'SQLALCHEMY_DATABASE_URI', 'sqlite:///club.db'
+)
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'change-me')
+CORS(app, origins=[o.strip() for o in os.environ.get('CORS_ORIGINS', 'http://localhost:3000').split(',')])
 from flask_jwt_extended import JWTManager
 from models import db
 

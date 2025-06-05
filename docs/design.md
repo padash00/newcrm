@@ -136,6 +136,12 @@ main
 - `POST /api/tariffs`
 - `GET /api/promotions`
 - `POST /api/promotions`
+## Переменные окружения
+
+- `JWT_SECRET_KEY` — секрет для подписи JWT
+- `SQLALCHEMY_DATABASE_URI` — строка подключения к SQLite или PostgreSQL
+- `CORS_ORIGINS` — список доменов фронтенда
+
 - `GET /api/shifts` — история смен
 codex/разработка-crm-системы-для-компьютерного-клуба
 - `POST /api/shifts/close` — закрытие смены (kaspi, нал, мелочь, долги, комментарий)
