@@ -92,7 +92,10 @@
 ## Основные маршруты API (Flask)
 
 - `POST /api/auth/login` — логин и получение JWT
+ codex-ui-clean
 - `POST /api/auth/register` — создание пользователя
+
+ main
 - `POST /api/auth/logout` — отзыв токена
 - `GET /api/users` — список пользователей (admin)
 - `POST /api/users` — создание пользователя
@@ -104,7 +107,9 @@
 - `POST /api/computers`
 - `GET /api/bookings` — бронирования
 - `POST /api/bookings`
+ codex-ui-clean
 - `POST /api/bookings/<id>/cancel` — отменить бронь
+ main
 - `GET /api/sessions` — активные/завершённые сессии
 - `POST /api/sessions/start` — запуск сессии
 - `POST /api/sessions/stop` — завершение
@@ -113,7 +118,11 @@
 - `GET /api/promotions`
 - `POST /api/promotions`
 - `GET /api/shifts` — история смен
+ codex-ui-clean
 - `POST /api/shifts/close` — закрытие смены (kaspi, нал, мелочь, долги, комментарий)
+
+- `POST /api/shifts/close` — закрытие смены
+ main
 
 Все запросы, кроме логина, требуют заголовок `Authorization: Bearer <jwt>`.
 

@@ -10,6 +10,7 @@
 зависимостей находится в [docs/design.md](docs/design.md).
 
 Бэкенд использует JWT авторизацию. Для входа отправьте POST запрос на
+ codex-ui-clean
 `/api/auth/login` с `username` и `password`. Создать пользователя можно
 через `POST /api/auth/register`. Используйте полученный токен в заголовке
 `Authorization` для доступа к защищённым маршрутам (например
@@ -21,3 +22,8 @@
 Во фронтенде кроме страниц входа и панели `/dashboard` доступны списки
 `/clients`, `/sessions`, `/shifts`, `/bookings` и страница закрытия
 кассы `/cash`, а также форма запуска сессии `/sessions/start`.
+
+`/api/auth/login` с `username` и `password` и используйте полученный токен
+в заголовке `Authorization` для доступа к защищённым маршрутам (например
+`/api/protected`).
+ main

@@ -29,6 +29,7 @@ def login():
     return jsonify(access_token=token), 200
 
 
+codex-ui-clean
 @auth_bp.route('/auth/register', methods=['POST'])
 def register():
     """Create a new user account."""
@@ -58,6 +59,7 @@ def register():
     return jsonify({'msg': 'User created', 'id': user.id}), 201
 
 
+ main
 @auth_bp.route('/protected')
 @jwt_required()
 def protected():

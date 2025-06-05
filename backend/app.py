@@ -11,6 +11,7 @@ db.init_app(app)
 jwt = JWTManager(app)
 
 from routes.auth import auth_bp
+codex-ui-clean
 from routes.clients import clients_bp
 from routes.shifts import shifts_bp
 from routes.sessions import sessions_bp
@@ -31,6 +32,9 @@ app.register_blueprint(computers_bp)
 app.register_blueprint(tariffs_bp)
 app.register_blueprint(promos_bp)
 app.register_blueprint(bookings_bp)
+
+app.register_blueprint(auth_bp)
+main
 
 @app.route('/')
 def home():
