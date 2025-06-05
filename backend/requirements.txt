@@ -2,3 +2,6 @@ flask
 flask_sqlalchemy
 flask_jwt_extended
 werkzeug
+codex/разработка-crm-системы-для-компьютерного-клуба
+openpyxl
+main

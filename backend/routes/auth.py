@@ -26,10 +26,16 @@ def login():
         return jsonify({'msg': 'Bad credentials'}), 401
 
     token = create_access_token(identity=user.id)
+codex/разработка-crm-системы-для-компьютерного-клуба
+    return jsonify(access_token=token, role=user.role), 200
+
+
+
     return jsonify(access_token=token), 200
 
 
 codex-ui-clean
+main
 @auth_bp.route('/auth/register', methods=['POST'])
 def register():
     """Create a new user account."""
@@ -52,6 +58,10 @@ def register():
         phone=phone,
         role_id=role_id,
     )
+codex/разработка-crm-системы-для-компьютерного-клуба
+    if user.role_rel:
+        user.role = user.role_rel.name
+ main
     user.set_password(password)
     db.session.add(user)
     db.session.commit()
@@ -59,6 +69,9 @@ def register():
     return jsonify({'msg': 'User created', 'id': user.id}), 201
 
 
+ codex/разработка-crm-системы-для-компьютерного-клуба
+
+ main
  main
 @auth_bp.route('/protected')
 @jwt_required()

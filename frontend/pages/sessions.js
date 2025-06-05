@@ -1,6 +1,13 @@
+codex/разработка-crm-системы-для-компьютерного-клуба
+import { useEffect, useState, useContext } from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { AuthContext } from '../context/AuthContext'
+
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+main
 import { Card } from '../components/ui/card'
 import { Table, TableHeader, TableHead, TableBody, TableRow, TableCell } from '../components/ui/table'
 import { Badge } from '../components/ui/badge'
@@ -8,14 +15,27 @@ import { Badge } from '../components/ui/badge'
 export default function Sessions() {
   const [sessions, setSessions] = useState([])
   const router = useRouter()
+codex/разработка-crm-системы-для-компьютерного-клуба
+  const { role } = useContext(AuthContext)
+main
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) { router.replace('/login'); return }
+codex/разработка-crm-системы-для-компьютерного-клуба
+    if (!['operator','admin'].includes(role)) { setSessions([]); return }
+    axios.get('/api/sessions', { headers: { Authorization: `Bearer ${token}` } })
+      .then(res => setSessions(res.data))
+      .catch(() => router.replace('/login'))
+  }, [router, role])
+
+  if (!['operator','admin'].includes(role)) return <div className="p-4">Нет доступа</div>
+
     axios.get('/api/sessions', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setSessions(res.data))
       .catch(() => router.replace('/login'))
   }, [router])
+main
 
   return (
     <div className="p-4 space-y-4">

@@ -1,23 +1,60 @@
+codex/разработка-crm-системы-для-компьютерного-клуба
+import { useEffect, useState, useContext } from 'react'
+
 import { useEffect, useState } from 'react'
+main
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { Card } from '../components/ui/card'
 import { Table, TableHeader, TableHead, TableBody, TableRow, TableCell } from '../components/ui/table'
 import { Button } from '../components/ui/button'
 
+codex/разработка-crm-системы-для-компьютерного-клуба
+import { AuthContext } from '../context/AuthContext'
+main
 export default function Shifts() {
   const [shifts, setShifts] = useState([])
   const [date, setDate] = useState('')
   const router = useRouter()
+codex/разработка-crm-системы-для-компьютерного-клуба
+  const { role } = useContext(AuthContext)
+main
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) { router.replace('/login'); return }
+codex/разработка-crm-системы-для-компьютерного-клуба
+    if (!['operator','admin'].includes(role)) { setShifts([]); return }
+ main
     const params = date ? { date } : {}
     axios.get('/api/shifts/', { params, headers: { Authorization: `Bearer ${token}` } })
       .then(res => setShifts(res.data))
       .catch(() => router.replace('/login'))
+ codex/разработка-crm-системы-для-компьютерного-клуба
+  }, [router, date, role])
+
+  const downloadExcel = async () => {
+    const token = localStorage.getItem('token')
+    try {
+      const res = await axios.get('/api/shifts/export_excel', {
+        headers: { Authorization: `Bearer ${token}` },
+        responseType: 'blob'
+      })
+      const url = window.URL.createObjectURL(new Blob([res.data]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', 'shifts.xlsx')
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+    } catch {
+      alert('Не удалось скачать файл')
+    }
+  }
+  if (!["operator","admin"].includes(role)) return <div className="p-4">Нет доступа</div>
+
   }, [router, date])
+ main
 
   return (
     <div className="p-4 space-y-4">
@@ -25,6 +62,9 @@ export default function Shifts() {
       <div className="flex items-center space-x-2">
         <input type="date" className="border p-2" value={date} onChange={e => setDate(e.target.value)} />
         <Button onClick={() => setDate('')}>Сброс</Button>
+codex/разработка-crm-системы-для-компьютерного-клуба
+        <Button onClick={downloadExcel}>📥 Скачать отчёт</Button>
+main
       </div>
       <Card>
         <Table>

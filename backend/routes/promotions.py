@@ -1,5 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
+ codex/разработка-crm-системы-для-компьютерного-клуба
+from .utils import role_required
+ main
 
 from models import db
 from models.promotions import Promotion
@@ -8,12 +11,18 @@ promos_bp = Blueprint('promotions', __name__, url_prefix='/api/promotions')
 
 @promos_bp.route('/', methods=['GET'])
 @jwt_required()
+ codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['admin'])
+ main
 def list_promotions():
     promos = Promotion.query.all()
     return jsonify([{ 'id': p.id, 'name': p.name, 'pattern': p.pattern, 'schedule': p.schedule } for p in promos])
 
 @promos_bp.route('/', methods=['POST'])
 @jwt_required()
+codex/разработка-crm-системы-для-компьютерного-клуба
+@role_required(['admin'])
+ main
 def create_promotion():
     data = request.get_json() or {}
     name = data.get('name')

@@ -1,4 +1,8 @@
+codex/разработка-crm-системы-для-компьютерного-клуба
+import { useEffect, useState, useContext } from 'react'
+
 import { useEffect, useState } from 'react'
+main
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { Card } from '../components/ui/card'
@@ -6,19 +10,33 @@ import { Table, TableHeader, TableHead, TableBody, TableRow, TableCell } from '.
 import { Badge } from '../components/ui/badge'
 import { Button } from '../components/ui/button'
 
+codex/разработка-crm-системы-для-компьютерного-клуба
+import { AuthContext } from '../context/AuthContext'
+main
 export default function Bookings() {
   const [bookings, setBookings] = useState([])
   const [date, setDate] = useState('')
   const router = useRouter()
+codex/разработка-crm-системы-для-компьютерного-клуба
+  const { role } = useContext(AuthContext)
+main
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) { router.replace('/login'); return }
+codex/разработка-crm-системы-для-компьютерного-клуба
+    if (!['operator','admin'].includes(role)) { setBookings([]); return }
+main
     const params = date ? { date } : {}
     axios.get('/api/bookings/', { params, headers: { Authorization: `Bearer ${token}` } })
       .then(res => setBookings(res.data))
       .catch(() => router.replace('/login'))
+codex/разработка-crm-системы-для-компьютерного-клуба
+  }, [router, date, role])
+  if (!["operator","admin"].includes(role)) return <div className="p-4">Нет доступа</div>
+
   }, [router, date])
+ main
 
   return (
     <div className="p-4 space-y-4">
