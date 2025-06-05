@@ -1,11 +1,15 @@
-FROM node:18-alpine as build
+# ---------- build ----------
+FROM node:18-alpine AS builder
 WORKDIR /app
-COPY package.json package-lock.json* ./
-RUN npm install
+COPY package*.json ./
+RUN npm ci
 COPY . .
-RUN npm run build
+RUN npm run build  # создаёт .next
 
-FROM nginx:alpine
-COPY --from=build /app/out /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# ---------- production ----------
+FROM node:18-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=builder /app ./
+EXPOSE 3000
+CMD ["npm", "start"]  # у тебя в package.json должен быть "start": "next start -p 3000"
